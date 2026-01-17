@@ -1,19 +1,20 @@
 import { motion } from "framer-motion";
 import { Facebook, Instagram, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/bettamansion-logo.png";
 
 const footerLinks = {
   explore: [
-    { name: "Our Fish", href: "#fish" },
-    { name: "Products", href: "#products" },
-    { name: "About Us", href: "#about" },
-    { name: "Gallery", href: "#gallery" },
+    { name: "Our Fish", href: "/fish" },
+    { name: "Products", href: "/products" },
+    { name: "About Us", href: "/about" },
+    { name: "Gallery", href: "/fish" },
   ],
   support: [
     { name: "Care Guides", href: "#" },
     { name: "Shipping Info", href: "#" },
     { name: "FAQs", href: "#" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "/contact" },
   ],
   legal: [
     { name: "Privacy Policy", href: "#" },
@@ -53,10 +54,10 @@ const Footer = () => {
                 className="h-12 w-auto object-contain"
               />
               <span className="font-serif text-xl font-semibold text-foreground">
-                Beta Mansion
+                Betta Mansion
               </span>
             </motion.a>
-            
+
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-md">
               Where aquatic elegance meets excellence. Discover the world's finest
               collection of premium Betta fish and luxury aquarium essentials.
@@ -93,12 +94,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.explore.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -112,12 +113,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -131,50 +132,24 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div className="glass rounded-2xl p-8 mb-16">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h4 className="font-serif text-xl font-semibold text-foreground mb-2">
-                Join the Elite
-              </h4>
-              <p className="text-sm text-muted-foreground">
-                Subscribe for exclusive drops, care tips, and special offers.
-              </p>
-            </div>
-            <div className="flex w-full md:w-auto gap-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 md:w-72 px-6 py-3 rounded-full bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-              />
-              <motion.button
-                className="btn-luxury whitespace-nowrap"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Subscribe
-              </motion.button>
-            </div>
-          </div>
-        </div>
+
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-border">
           <p className="text-sm text-muted-foreground">
-            © 2024 Beta Mansion. All rights reserved.
+            © 2024 Betta Mansion. All rights reserved.
           </p>
 
           {/* Social Links */}
