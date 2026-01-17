@@ -1,8 +1,30 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ChevronDown, ChevronLeft, ChevronRight, Facebook, Instagram, Twitter } from "lucide-react";
+import { useEffect } from "react";
 import heroBetta from "@/assets/hero-betta.png";
 
 const HeroSection = () => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  // Smooth spring animation for cursor following
+  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Calculate offset from center of screen
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      // Move fish slightly based on cursor position (max 30px movement)
+      mouseX.set((e.clientX - centerX) / centerX * 30);
+      mouseY.set((e.clientY - centerY) / centerY * 20);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
   const scrollToNext = () => {
     const nextSection = document.querySelector("#featured");
     if (nextSection) {
@@ -23,6 +45,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
+        style={{ x: springX, y: springY }}
         className="absolute right-0 top-0 h-full w-[60%] z-0"
       >
         <img 
